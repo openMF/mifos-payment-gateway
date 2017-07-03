@@ -32,5 +32,8 @@ dependencies {
 	// Use MySQL Connector-J
 	compile 'mysql:mysql-connector-java'
 
+	// Add version 2.3 of the Joda time library
+	compile "joda-time:joda-time:2.3"
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
