@@ -1,0 +1,190 @@
+/**
+ * File: Configuration.java
+ * =========================================
+ * This class models the mifos payment Configuration
+ * table in our database.
+ * @author Vladimir Fomene
+ **/
+
+package org.mifos.mifospaymentbridge.model;
+
+import org.joda.time.DateTime;
+import javax.persistence.Column;
+import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+@Table(name="configuration")
+public class configuration{
+
+    //creation of reference type
+    private enum ReferenceType{
+        MMP, MFI
+    }
+
+    //Creation of configCategory type
+    private enum ConfigCategory{
+        S3, API
+    }
+
+
+    /**
+     * table Fields of the configuration table
+     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="configuration_id")
+    private Long Id;
+
+    @Column(name="reference_id")
+    private Long referenceId;
+
+    @Column(name="reference_type")
+    private ReferenceType refType;
+
+    @Column(name="config_name")
+    private String configName;
+
+    @Column(name="config_value")
+    private String configValue;
+
+    @Column(name="configuration_category")
+    private ConfigCategory configCategory;
+
+    @Column(name="last_modified_dtm")
+    private DateTime lastModifiedDtm;
+
+    @Column(name="last_modified_by_id")
+    private Long lastModifiedById;
+
+    /**
+     * Gets the id of a configuration
+     * @return Id
+     */
+    public Long getId() {
+        return Id;
+    }
+
+    /**
+     * Sets the id of a configuration
+     * @param id
+     */
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    /**
+     * Gets the reference id of a configuration
+     * @return
+     */
+    public Long getReferenceId() {
+        return referenceId;
+    }
+
+    /**
+     * Sets the reference id of a configuration
+     * @param referenceId
+     */
+    public void setReferenceId(Long referenceId) {
+        this.referenceId = referenceId;
+    }
+
+    /**
+     * Gets the referenceType of the configuration
+     * @return refType
+     */
+    public ReferenceType getRefType() {
+        return refType;
+    }
+
+    /**
+     * Sets the referenceType of a configuration
+     * @param refType
+     */
+    public void setRefType(ReferenceType refType) {
+        this.refType = refType;
+    }
+
+    /**
+     * Gets the configuration name
+     * @return configName
+     */
+    public String getConfigName() {
+        return configName;
+    }
+
+    /**
+     * Sets the config_name field of a configuration
+     * @param configName
+     */
+    public void setConfigName(String configName) {
+        this.configName = configName;
+    }
+
+    /**
+     * Gets the config value of a configuration
+     * @return configValue
+     */
+    public String getConfigValue() {
+        return configValue;
+    }
+
+    /**
+     * Sets the config value of a configuration
+     * @param configValue
+     */
+    public void setConfigValue(String configValue) {
+        this.configValue = configValue;
+    }
+
+    /**
+     * Gets the configuration category
+     * @return configCategory
+     */
+    public ConfigCategory getConfigCategory() {
+        return configCategory;
+    }
+
+    /**
+     * Sets the configurations category of a configuration
+     * @param configCategory
+     */
+    public void setConfigCategory(ConfigCategory configCategory) {
+        this.configCategory = configCategory;
+    }
+
+    /**
+     * Gets the last Modified date
+     * @return lastModifiedDtm
+     */
+    public DateTime getLastModifiedDtm() {
+        return lastModifiedDtm;
+    }
+
+    /**
+     * Set the last modified date
+     * @param lastModifiedDtm
+     */
+    public void setLastModifiedDtm(DateTime lastModifiedDtm) {
+        this.lastModifiedDtm = lastModifiedDtm;
+    }
+
+    /**
+     * Gets the id that last modified the configuration
+     * @return lastModifiedById
+     */
+    public Long getLastModifiedById() {
+        return lastModifiedById;
+    }
+
+    /**
+     * Sets the id that last modified the configuration
+     * @param lastModifiedById
+     */
+    public void setLastModifiedById(Long lastModifiedById) {
+        this.lastModifiedById = lastModifiedById;
+    }
+}
