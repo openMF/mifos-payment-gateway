@@ -8,6 +8,7 @@
 
 package org.mifos.mifospaymentbridge.model;
 
+import org.joda.time.DateTime;
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Entity;
