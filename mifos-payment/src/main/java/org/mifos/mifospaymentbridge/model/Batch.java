@@ -49,7 +49,7 @@ public class Batch{
     private String filePath;
 
     @Column(name="file_dtm")
-    private Date fileDate;
+    private DateTime fileDate;
 
     @Column(name="uploaded_by_id")
     private Long uploadedById;

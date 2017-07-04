@@ -18,16 +18,11 @@ import javax.persistence.Id;
 
 @Entity
 @Table(name="configuration")
-public class configuration{
+public class Configuration{
 
     //creation of reference type
     private enum ReferenceType{
         MMP, MFI
-    }
-
-    //Creation of configCategory type
-    private enum ConfigCategory{
-        S3, API
     }
 
 
@@ -52,7 +47,7 @@ public class configuration{
     private String configValue;
 
     @Column(name="configuration_category")
-    private ConfigCategory configCategory;
+    private Integer configCategory;
 
     @Column(name="last_modified_dtm")
     private DateTime lastModifiedDtm;
@@ -144,7 +139,7 @@ public class configuration{
      * Gets the configuration category
      * @return configCategory
      */
-    public ConfigCategory getConfigCategory() {
+    public Integer getConfigCategory() {
         return configCategory;
     }
 
@@ -152,7 +147,7 @@ public class configuration{
      * Sets the configurations category of a configuration
      * @param configCategory
      */
-    public void setConfigCategory(ConfigCategory configCategory) {
+    public void setConfigCategory(Integer configCategory) {
         this.configCategory = configCategory;
     }
 
