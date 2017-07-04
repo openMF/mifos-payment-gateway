@@ -9,7 +9,7 @@
 package org.mifos.mifospaymentbridge.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import org.mifos.mifospaymentbridge.model.MobileMoneyProvider;
+import org.mifos.mifospaymentbridge.model.MobileMoneyProviderMicrofinance;
 
 public interface MobileMoneyProviderMicrofinanceRepository extends CrudRepository<MobileMoneyProviderMicrofinance, Long>{
 
