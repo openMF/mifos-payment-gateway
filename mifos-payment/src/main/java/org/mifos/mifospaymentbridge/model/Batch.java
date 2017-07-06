@@ -21,7 +21,7 @@ import javax.persistence.Id;
 public class Batch{
 
     //Creation of a new type for transaction direction
-    private enum TransactionDirection{
+    public static enum TransactionDirection{
         INBOUND, OUTBOUND
     }
 

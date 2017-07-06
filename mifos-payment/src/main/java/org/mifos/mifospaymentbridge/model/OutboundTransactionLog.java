@@ -20,7 +20,7 @@ import javax.persistence.Id;
 public class OutboundTransactionLog{
 
     //Creation of TransactionType type
-    public enum TransactionType{
+    public static enum TransactionType{
         DISBURSEMENT, WITHDRAWAL, REVERSAL
     }
 
