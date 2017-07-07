@@ -25,5 +25,5 @@ public interface OutboundTransactionLogRepository extends CrudRepository<Outboun
 
     void deleteById(Long id);
 
-    List<OutboundTransactionLog> findByTransactTypeIgnoreCase(OutboundTransactionLog.TransactionType transactionType);
+    List<OutboundTransactionLog> findByTransactType(OutboundTransactionLog.TransactionType transactionType);
 }

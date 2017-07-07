@@ -26,5 +26,5 @@ public interface BatchRepository extends CrudRepository<Batch, Long>{
 
     void deleteById(Long id);
 
-    List<Batch> findByTransact_directionIgnoreCase(Batch.TransactionDirection transactionDirection);
+    List<Batch> findByTransactDirection(Batch.TransactionDirection transactionDirection);
 }

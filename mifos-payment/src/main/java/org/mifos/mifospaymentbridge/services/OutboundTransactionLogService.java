@@ -49,6 +49,6 @@ public class OutboundTransactionLogService {
     }
 
     public List<OutboundTransactionLog> findByTransactTypeIgnoreCase(OutboundTransactionLog.TransactionType transactionType){
-        return outboundTransactionLogRepository.findByTransactTypeIgnoreCase(transactionType);
+        return outboundTransactionLogRepository.findByTransactType(transactionType);
     }
 }

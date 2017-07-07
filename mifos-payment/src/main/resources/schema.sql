@@ -18,6 +18,11 @@ USE `mifos-payment-gateway`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Enable creation of foreign keys even if their
+-- corresponding tables does not exist.
+--
+set FOREIGN_KEY_CHECKS=0;
+--
 -- Table structure for table `Batch`
 --
 
