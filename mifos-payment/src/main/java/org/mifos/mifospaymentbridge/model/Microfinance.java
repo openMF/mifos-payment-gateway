@@ -31,7 +31,7 @@ public class Microfinance{
     @Column(name="mfi_name")
     private String name;
 
-    @Column(name="mfi_name")
+    @Column(name="description")
     private String description;
 
     @Column(name="last_modified_dtm")

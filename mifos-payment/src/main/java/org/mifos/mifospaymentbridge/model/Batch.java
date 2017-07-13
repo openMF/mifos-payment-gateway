@@ -21,7 +21,7 @@ import javax.persistence.Id;
 public class Batch{
 
     //Creation of a new type for transaction direction
-    private enum TransactionDirection{
+    public static enum TransactionDirection{
         INBOUND, OUTBOUND
     }
 
@@ -40,7 +40,7 @@ public class Batch{
     private Long mfiId;
 
     @Column(name="transaction_direction")
-    private TransactionDirection transact_direction;
+    private TransactionDirection transactDirection;
 
     @Column(name="file_name")
     private String fileName;
@@ -49,7 +49,7 @@ public class Batch{
     private String filePath;
 
     @Column(name="file_dtm")
-    private Date fileDate;
+    private DateTime fileDate;
 
     @Column(name="uploaded_by_id")
     private Long uploadedById;
@@ -119,16 +119,16 @@ public class Batch{
      * Gets the transaction direction
      * @return transact_direction
      */
-    public TransactionDirection getTransact_direction() {
-        return transact_direction;
+    public TransactionDirection getTransactDirection() {
+        return transactDirection;
     }
 
     /**
      * Sets the transaction direction of a transaction
      * @param transact_direction
      */
-    public void setTransact_direction(TransactionDirection transact_direction) {
-        this.transact_direction = transact_direction;
+    public void setTransactDirection(TransactionDirection transact_direction) {
+        this.transactDirection = transact_direction;
     }
 
     /**

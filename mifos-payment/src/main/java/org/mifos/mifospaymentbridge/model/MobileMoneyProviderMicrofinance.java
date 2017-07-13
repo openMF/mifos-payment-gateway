@@ -18,7 +18,7 @@ import javax.persistence.Id;
 
 @Entity
 @Table(name="mmp_mfi")
-public class MobileMoneyProverMicrofinance{
+public class MobileMoneyProviderMicrofinance{
 
     /**
      * table Fields of the InboundRequest table

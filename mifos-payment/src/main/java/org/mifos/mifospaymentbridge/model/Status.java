@@ -19,11 +19,6 @@ import javax.persistence.Id;
 @Table(name="status")
 public class Status{
 
-    //Creation of a new type for status_category
-    private enum StatusCategory{
-        PROCESSING, SYSTEM
-    }
-
     /**
      * table Fields of the status table
      */
@@ -32,14 +27,14 @@ public class Status{
     @Column(name="status_id")
     private Integer id;
 
-    @Column(name="status_id")
+    @Column(name="code")
     private String code;
 
     @Column(name="description")
     private String description;
 
     @Column(name="status_category")
-    private StatusCategory statusCategory;
+    private Integer statusCategory;
 
     /**
      * Gets the status id
@@ -93,7 +88,7 @@ public class Status{
      * Sets the category of a status
      * @return statusCategory
      */
-    public StatusCategory getStatusCategory() {
+    public Integer getStatusCategory() {
         return statusCategory;
     }
 
@@ -101,7 +96,7 @@ public class Status{
      * Sets the category of a status
      * @param statusCategory
      */
-    public void setStatusCategory(StatusCategory statusCategory) {
+    public void setStatusCategory(Integer statusCategory) {
         this.statusCategory = statusCategory;
     }
 }

@@ -30,7 +30,7 @@ public class OutboundRequest{
      */
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="outbound_request")
+    @Column(name="outbound_request_id")
     private Long id;
 
     @Column(name="transaction_type")
@@ -113,7 +113,7 @@ public class OutboundRequest{
      * Sets the transaction type of the request.
      * @param transactType
      */
-    public void setTransactType(org.mifos.mifospaymentbridge.model.InboundRequest.TransactionType transactType) {
+    public void setTransactType(TransactionType transactType) {
         this.transactType = transactType;
     }
 
@@ -335,7 +335,7 @@ public class OutboundRequest{
 
     /**
      * Set the inboundStatus date and time
-     * @param inboundStatusDtm
+     * @param outboundStatusDtm
      */
     public void setOutboundStatusDtm(DateTime outboundStatusDtm) {
         this.outboundStatusDtm = outboundStatusDtm;

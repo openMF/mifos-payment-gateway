@@ -35,5 +35,14 @@ dependencies {
 	// Add version 2.3 of the Joda time library
 	compile "joda-time:joda-time:2.3"
 
+	//Add jackson library for json to POJO conversions
+	compile("com.fasterxml.jackson.core:jackson-databind")
+
+	//Add lombok library for generating getters, setters and toString
+	compile("org.projectlombok:lombok:1.16.18")
+
+	//Add retrofit library to communicate with web services
+	compile 'com.squareup.retrofit2:retrofit:2.3.0'
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
