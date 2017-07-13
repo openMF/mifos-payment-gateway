@@ -32,7 +32,7 @@ public class Configuration{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="configuration_id")
-    private Long Id;
+    private Long id;
 
     @Column(name="reference_id")
     private Long referenceId;
@@ -60,7 +60,7 @@ public class Configuration{
      * @return Id
      */
     public Long getId() {
-        return Id;
+        return id;
     }
 
     /**
@@ -68,7 +68,7 @@ public class Configuration{
      * @param id
      */
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     /**
