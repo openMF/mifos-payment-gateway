@@ -49,6 +49,6 @@ public class BatchService {
     }
 
     public List<Batch> findByTransact_directionIgnoreCase(Batch.TransactionDirection transactionDirection){
-        return batchRepository.findByTransact_directionIgnoreCase(transactionDirection);
+        return batchRepository.findByTransactDirection(transactionDirection);
     }
 }

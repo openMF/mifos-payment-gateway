@@ -13,7 +13,6 @@ package org.mifos.mifospaymentbridge.services;
 import org.mifos.mifospaymentbridge.model.Configuration;
 import org.mifos.mifospaymentbridge.repository.ConfigurationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 
 public class ConfigurationService {
