@@ -117,32 +117,7 @@ LOCK TABLES `MMP` WRITE;
 /*!40000 ALTER TABLE `MMP` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `MMP_Config`
---
 
-DROP TABLE IF EXISTS `MMP_Config`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `MMP_Config` (
-  `mmp_config_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `mmp_id` bigint(20) NOT NULL,
-  `config_name` varchar(100) NOT NULL,
-  `config_value` varchar(255) NOT NULL,
-  PRIMARY KEY (`mmp_config_id`),
-  KEY `mmp__idx` (`mmp_id`),
-  CONSTRAINT `` FOREIGN KEY (`mmp_id`) REFERENCES `MMP` (`mmp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `MMP_Config`
---
-
-LOCK TABLES `MMP_Config` WRITE;
-/*!40000 ALTER TABLE `MMP_Config` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MMP_Config` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `category`
