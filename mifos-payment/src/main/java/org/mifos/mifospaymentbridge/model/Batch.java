@@ -17,7 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@Table(name = "Batch")
+@Table(name = "batch")
 public class Batch{
 
     //Creation of a new type for transaction direction

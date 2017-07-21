@@ -12,8 +12,11 @@ package org.mifos.mifospaymentbridge.services;
 import org.mifos.mifospaymentbridge.model.InboundRequest;
 import org.mifos.mifospaymentbridge.repository.InboundRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class InboundRequestService {
 
     @Autowired
@@ -27,7 +30,7 @@ public class InboundRequestService {
         return inboundRequestRepository.findOne(id);
     }
 
-    public List<InboundRequest> findAll(){
+    public Iterable<InboundRequest> findAll(){
         return inboundRequestRepository.findAll();
     }
 
@@ -43,8 +46,8 @@ public class InboundRequestService {
         return inboundRequestRepository.exists(id);
     }
 
-    public void deleteById(Long id){
-        inboundRequestRepository.deleteById(id);
+    public void delete(Long id){
+        inboundRequestRepository.delete(id);
     }
 
     public List<InboundRequest> findBySourceRefIgnoreCase(String ref){

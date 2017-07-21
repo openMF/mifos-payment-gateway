@@ -9,12 +9,15 @@
 package org.mifos.mifospaymentbridge.services;
 
 
+import org.mifos.mifospaymentbridge.Util.TransactionType;
 import org.mifos.mifospaymentbridge.model.OutboundTransactionLog;
 import org.mifos.mifospaymentbridge.repository.OutboundTransactionLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OutboundTransactionLogService {
 
     @Autowired
@@ -28,7 +31,7 @@ public class OutboundTransactionLogService {
         return outboundTransactionLogRepository.findOne(id);
     }
 
-    public List<OutboundTransactionLog> findAll(){
+    public Iterable<OutboundTransactionLog> findAll(){
         return outboundTransactionLogRepository.findAll();
     }
 
@@ -44,11 +47,15 @@ public class OutboundTransactionLogService {
         return outboundTransactionLogRepository.exists(id);
     }
 
-    public void deleteById(Long id){
-        outboundTransactionLogRepository.deleteById(id);
+    public void delete(Long id){
+        outboundTransactionLogRepository.delete(id);
     }
 
-    public List<OutboundTransactionLog> findByTransactTypeIgnoreCase(OutboundTransactionLog.TransactionType transactionType){
+    public List<OutboundTransactionLog> findByTransactTypeIgnoreCase(TransactionType transactionType){
         return outboundTransactionLogRepository.findByTransactType(transactionType);
+    }
+
+    public OutboundTransactionLog findByOutboundRequestId(Long id){
+        return outboundTransactionLogRepository.findByOutboundRequestId(id);
     }
 }

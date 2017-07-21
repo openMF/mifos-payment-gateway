@@ -11,8 +11,11 @@ package org.mifos.mifospaymentbridge.services;
 import org.mifos.mifospaymentbridge.model.GatewayUser;
 import org.mifos.mifospaymentbridge.repository.GatewayUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class GatewayUserService {
     @Autowired
     private GatewayUserRepository gatewayUserRepository;
@@ -25,7 +28,7 @@ public class GatewayUserService {
         return gatewayUserRepository.findOne(id);
     }
 
-    public List<GatewayUser> findAll(){
+    public Iterable<GatewayUser> findAll(){
         return gatewayUserRepository.findAll();
     }
 
@@ -41,8 +44,8 @@ public class GatewayUserService {
         return gatewayUserRepository.exists(id);
     }
 
-    public void deleteById(Long id){
-        gatewayUserRepository.deleteById(id);
+    public void delete(Long id){
+        gatewayUserRepository.delete(id);
     }
 
     public List<GatewayUser> findByUsernameIgnoreCase(String userName){

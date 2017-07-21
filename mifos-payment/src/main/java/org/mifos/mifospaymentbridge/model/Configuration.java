@@ -46,7 +46,7 @@ public class Configuration{
     @Column(name="config_value")
     private String configValue;
 
-    @Column(name="configuration_category")
+    @Column(name="config_category")
     private Integer configCategory;
 
     @Column(name="last_modified_dtm")

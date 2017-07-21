@@ -13,9 +13,11 @@ package org.mifos.mifospaymentbridge.services;
 import org.mifos.mifospaymentbridge.model.Batch;
 import org.mifos.mifospaymentbridge.repository.BatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 import java.util.List;
 
+
+@Service
 public class BatchService {
     @Autowired
     private BatchRepository batchRepository;
@@ -28,7 +30,7 @@ public class BatchService {
         return batchRepository.findOne(id);
     }
 
-    public List<Batch> findAll(){
+    public Iterable<Batch> findAll(){
         return batchRepository.findAll();
     }
 
@@ -44,8 +46,8 @@ public class BatchService {
         return batchRepository.exists(id);
     }
 
-    public void deleteById(Long id){
-        batchRepository.deleteById(id);
+    public void delete(Long id){
+        batchRepository.delete(id);
     }
 
     public List<Batch> findByTransact_directionIgnoreCase(Batch.TransactionDirection transactionDirection){

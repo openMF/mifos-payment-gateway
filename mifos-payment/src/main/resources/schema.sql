@@ -23,13 +23,13 @@ USE `mifos-payment-gateway`;
 --
 set FOREIGN_KEY_CHECKS=0;
 --
--- Table structure for table `Batch`
+-- Table structure for table `batch`
 --
 
-DROP TABLE IF EXISTS `Batch`;
+DROP TABLE IF EXISTS `batch`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Batch` (
+CREATE TABLE `batch` (
   `batch_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `mmp_id` bigint(20) NOT NULL,
   `mfi_id` bigint(20) NOT NULL,
@@ -43,34 +43,34 @@ CREATE TABLE `Batch` (
   `last_updated_dtm` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status_id` int(11) NOT NULL,
   PRIMARY KEY (`batch_id`),
-  KEY `fk_Batch_1_idx` (`mfi_id`),
-  KEY `fk_Batch_2_idx` (`mmp_id`),
-  KEY `fk_Batch_3_idx` (`status_id`),
-  KEY `fk_Batch_4_idx` (`last_updated_by_id`),
-  CONSTRAINT `fk_Batch_1` FOREIGN KEY (`mfi_id`) REFERENCES `MFI` (`mfi_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Batch_2` FOREIGN KEY (`mmp_id`) REFERENCES `MMP` (`mmp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Batch_3` FOREIGN KEY (`status_id`) REFERENCES `status` (`status_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Batch_4` FOREIGN KEY (`last_updated_by_id`) REFERENCES `gateway_users` (`gateway_user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_batch_1_idx` (`mfi_id`),
+  KEY `fk_batch_2_idx` (`mmp_id`),
+  KEY `fk_batch_3_idx` (`status_id`),
+  KEY `fk_batch_4_idx` (`last_updated_by_id`),
+  CONSTRAINT `fk_batch_1` FOREIGN KEY (`mfi_id`) REFERENCES `mfi` (`mfi_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_batch_2` FOREIGN KEY (`mmp_id`) REFERENCES `mmp` (`mmp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_batch_3` FOREIGN KEY (`status_id`) REFERENCES `status` (`status_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_batch_4` FOREIGN KEY (`last_updated_by_id`) REFERENCES `gateway_users` (`gateway_user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Batch`
+-- Dumping data for table `batch`
 --
 
-LOCK TABLES `Batch` WRITE;
-/*!40000 ALTER TABLE `Batch` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Batch` ENABLE KEYS */;
+LOCK TABLES `batch` WRITE;
+/*!40000 ALTER TABLE `batch` DISABLE KEYS */;
+/*!40000 ALTER TABLE `batch` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `MFI`
+-- Table structure for table `mfi`
 --
 
-DROP TABLE IF EXISTS `MFI`;
+DROP TABLE IF EXISTS `mfi`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `MFI` (
+CREATE TABLE `mfi` (
   `mfi_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `mfi_name` varchar(45) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -81,40 +81,40 @@ CREATE TABLE `MFI` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `MFI`
+-- Dumping data for table `mfi`
 --
 
-LOCK TABLES `MFI` WRITE;
-/*!40000 ALTER TABLE `MFI` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MFI` ENABLE KEYS */;
+LOCK TABLES `mfi` WRITE;
+/*!40000 ALTER TABLE `mfi` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mfi` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `MMP`
+-- Table structure for table `mmp`
 --
 
-DROP TABLE IF EXISTS `MMP`;
+DROP TABLE IF EXISTS `mmp`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `MMP` (
+CREATE TABLE `mmp` (
   `mmp_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `provider_name` varchar(45) NOT NULL,
   `currency_code` varchar(45) NOT NULL,
   `last_modified_dtm` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_modified_by_id` bigint(20) NOT NULL,
   PRIMARY KEY (`mmp_id`),
-  KEY `fk_MMP_1_idx` (`last_modified_by_id`),
-  CONSTRAINT `fk_MMP_1` FOREIGN KEY (`last_modified_by_id`) REFERENCES `gateway_users` (`gateway_user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_mmp_1_idx` (`last_modified_by_id`),
+  CONSTRAINT `fk_mmp_1` FOREIGN KEY (`last_modified_by_id`) REFERENCES `gateway_users` (`gateway_user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `MMP`
+-- Dumping data for table `mmp`
 --
 
-LOCK TABLES `MMP` WRITE;
-/*!40000 ALTER TABLE `MMP` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MMP` ENABLE KEYS */;
+LOCK TABLES `mmp` WRITE;
+/*!40000 ALTER TABLE `mmp` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mmp` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -156,7 +156,7 @@ DROP TABLE IF EXISTS `configuration`;
 CREATE TABLE `configuration` (
   `configuration_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `reference_id` bigint(20) NOT NULL,
-  `reference_type` enum('MMP','MFI') NOT NULL,
+  `reference_type` enum('mmp','mfi') NOT NULL,
   `config_name` varchar(100) NOT NULL,
   `config_value` varchar(100) NOT NULL,
   `config_category` int(11) NOT NULL,
@@ -166,8 +166,8 @@ CREATE TABLE `configuration` (
   KEY `fk_configuration_1_idx` (`reference_id`),
   KEY `fk_configuration_3_idx` (`last_modified_by_id`),
   KEY `fk_configuration_4_idx` (`config_category`),
-  CONSTRAINT `fk_configuration_1` FOREIGN KEY (`reference_id`) REFERENCES `MFI` (`mfi_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_configuration_2` FOREIGN KEY (`reference_id`) REFERENCES `MMP` (`mmp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_configuration_1` FOREIGN KEY (`reference_id`) REFERENCES `mfi` (`mfi_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_configuration_2` FOREIGN KEY (`reference_id`) REFERENCES `mmp` (`mmp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_configuration_3` FOREIGN KEY (`last_modified_by_id`) REFERENCES `gateway_users` (`gateway_user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_configuration_4` FOREIGN KEY (`config_category`) REFERENCES `category` (`category_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -200,8 +200,8 @@ CREATE TABLE `gateway_users` (
   PRIMARY KEY (`gateway_user_id`),
   KEY `fk_gateway_users_1_idx` (`mfi_id`),
   KEY `fk_gateway_users_2_idx` (`mmp_id`),
-  CONSTRAINT `fk_gateway_users_1` FOREIGN KEY (`mfi_id`) REFERENCES `MFI` (`mfi_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_gateway_users_2` FOREIGN KEY (`mmp_id`) REFERENCES `MMP` (`mmp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_gateway_users_1` FOREIGN KEY (`mfi_id`) REFERENCES `mfi` (`mfi_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_gateway_users_2` FOREIGN KEY (`mmp_id`) REFERENCES `mmp` (`mmp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -273,8 +273,8 @@ CREATE TABLE `inbound_request` (
   KEY `fk_inbound_request_1_idx` (`mfi_id`),
   KEY `fk_inbound_request_2_idx` (`mmp_id`),
   KEY `fk_inbound_request_3_idx` (`inbound_status_id`),
-  CONSTRAINT `fk_inbound_request_1` FOREIGN KEY (`mfi_id`) REFERENCES `MFI` (`mfi_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_inbound_request_2` FOREIGN KEY (`mmp_id`) REFERENCES `MMP` (`mmp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_inbound_request_1` FOREIGN KEY (`mfi_id`) REFERENCES `mfi` (`mfi_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_inbound_request_2` FOREIGN KEY (`mmp_id`) REFERENCES `mmp` (`mmp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_inbound_request_3` FOREIGN KEY (`inbound_status_id`) REFERENCES `status` (`status_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -303,8 +303,8 @@ CREATE TABLE `mmp_mfi` (
   PRIMARY KEY (`mmp_mfi_id`),
   KEY `fk_mmp_mfi_1_idx` (`mmp_id`),
   KEY `fk_mmp_mfi_2_idx` (`mfi_id`),
-  CONSTRAINT `fk_mmp_mfi_1` FOREIGN KEY (`mmp_id`) REFERENCES `MMP` (`mmp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_mmp_mfi_2` FOREIGN KEY (`mfi_id`) REFERENCES `MFI` (`mfi_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_mmp_mfi_1` FOREIGN KEY (`mmp_id`) REFERENCES `mmp` (`mmp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_mmp_mfi_2` FOREIGN KEY (`mfi_id`) REFERENCES `mfi` (`mfi_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -326,30 +326,32 @@ DROP TABLE IF EXISTS `outbound_request`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `outbound_request` (
   `outbound_request_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `transaction_type` enum('disbursement','withdrawal') NOT NULL,
+  `transaction_type` enum('DISBURSEMENT','WITHDRAWAL') NOT NULL,
   `mfi_id` bigint(20) NOT NULL,
   `mmp_id` bigint(20) NOT NULL,
+  `payment_method` varchar(100) NOT NULL,
+  `payment_method_type` varchar(100) NOT NULL,
   `source_reference` varchar(45) NOT NULL,
   `destination_reference` varchar(45) NOT NULL,
   `fineract_account_number` varchar(45) NOT NULL,
-  `fineract_client_id` bigint(20) NOT NULL,
+  `fineract_client_id` bigint(20),
   `amount` decimal(15,2) NOT NULL,
   `transaction_reason` varchar(255) DEFAULT NULL,
   `external_system_id` varchar(45) DEFAULT NULL,
   `comments` varchar(255) DEFAULT NULL,
-  `request_dtm` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `request_ip_address` varchar(45) NOT NULL,
-  `outbound_status_id` int(11) NOT NULL,
-  `outbound_status_dtm` datetime NOT NULL,
-  `reverse_status_id` int(11) NOT NULL,
-  `reverse_status_id_dtm` datetime NOT NULL,
+  `request_dtm` TIMESTAMP NOT NULL,
+  `request_ip_address` varchar(45) DEFAULT NULL,
+  `outbound_status_id` int(11) DEFAULT NULL,
+  `outbound_status_dtm` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `reverse_status_id` int(11) DEFAULT NULL,
+  `reverse_status_id_dtm` TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`outbound_request_id`),
   KEY `fk_outbound_request_1_idx` (`mfi_id`),
   KEY `fk_outbound_request_2_idx` (`mmp_id`),
   KEY `fk_outbound_request_3_idx` (`outbound_status_id`),
   KEY `fk_outbound_request_4_idx` (`reverse_status_id`),
-  CONSTRAINT `fk_outbound_request_1` FOREIGN KEY (`mfi_id`) REFERENCES `MFI` (`mfi_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_outbound_request_2` FOREIGN KEY (`mmp_id`) REFERENCES `MMP` (`mmp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_outbound_request_1` FOREIGN KEY (`mfi_id`) REFERENCES `mfi` (`mfi_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_outbound_request_2` FOREIGN KEY (`mmp_id`) REFERENCES `mmp` (`mmp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_outbound_request_3` FOREIGN KEY (`outbound_status_id`) REFERENCES `status` (`status_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_outbound_request_4` FOREIGN KEY (`reverse_status_id`) REFERENCES `status` (`status_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -374,10 +376,10 @@ DROP TABLE IF EXISTS `outbound_transaction_log`;
 CREATE TABLE `outbound_transaction_log` (
   `outbound_transaction_log_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `outbound_request_id` bigint(20) NOT NULL,
-  `request_ip_address` varchar(45) NOT NULL,
+  `request_ip_address` varchar(45) DEFAULT NULL,
   `transaction_type` enum('withdrawal','disbursement','reversal') NOT NULL,
   `transaction_status_id` int(11) NOT NULL,
-  `transaction_dtm` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `transaction_dtm` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`outbound_transaction_log_id`),
   KEY `fk_outbound_transaction_log_1_idx` (`transaction_status_id`),
   KEY `fk_outbound_transaction_log_2_idx` (`outbound_request_id`),
