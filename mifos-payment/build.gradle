@@ -26,6 +26,9 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
 
+	//Helps you to build rest service, consume rest and use RestController
+	compile("org.springframework.boot:spring-boot-starter-web")
+
 	// JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
 
@@ -43,6 +46,9 @@ dependencies {
 
 	//Add retrofit library to communicate with web services
 	compile 'com.squareup.retrofit2:retrofit:2.3.0'
+
+	//Add okhttp to get http error response from retrofit
+	compile 'com.squareup.okhttp3:okhttp:3.8.1'
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
