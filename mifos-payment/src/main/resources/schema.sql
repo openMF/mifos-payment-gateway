@@ -261,6 +261,8 @@ CREATE TABLE `inbound_request` (
   `destination_reference` varchar(45) NOT NULL,
   `fineract_account_number` varchar(45) NOT NULL,
   `fineract_client_id` bigint(20) NOT NULL,
+  `payment_method` varchar(100) NOT NULL,
+  `payment_method_type` varchar(100) NOT NULL,
   `amount` decimal(15,2) NOT NULL,
   `transaction_reason` varchar(255) NOT NULL,
   `external_system_id` varchar(45) DEFAULT NULL,

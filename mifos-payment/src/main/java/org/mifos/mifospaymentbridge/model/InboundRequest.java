@@ -9,6 +9,7 @@
 
 package org.mifos.mifospaymentbridge.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.joda.time.DateTime;
 import javax.persistence.Column;
 import javax.persistence.Table;
@@ -16,11 +17,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
+import java.sql.Timestamp;
 
 
 @Entity
 @Table(name="inbound_request")
-public class InboundRequest{
+public class InboundRequest implements Serializable{
 
     //Creation of TransactionType type
     public enum TransactionType{
@@ -57,7 +60,7 @@ public class InboundRequest{
     private Long fineractClientId;
 
     @Column(name="amount")
-    private double amount;
+    private Double amount;
 
     @Column(name="transaction_reason")
     private String transactionReason;
@@ -69,7 +72,7 @@ public class InboundRequest{
     private String comments;
 
     @Column(name="requested_dtm")
-    private DateTime requestedDtm;
+    private Timestamp requestedDtm;
 
     @Column(name="request_id_address")
     private String requestIpAddress;
@@ -78,7 +81,13 @@ public class InboundRequest{
     private Integer inboundStatusId;
 
     @Column(name="inbound_status_dtm")
-    private DateTime inboundStatusDtm;
+    private Timestamp inboundStatusDtm;
+
+    @Column(name="payment_method")
+    private String paymentMethod;
+
+    @Column(name="payment_method_type")
+    private String paymentMethodType;
 
     /**
      * Gets the id of the request
@@ -212,7 +221,7 @@ public class InboundRequest{
      * Get the amount of the request
      * @return amount
      */
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
@@ -220,7 +229,7 @@ public class InboundRequest{
      * Sets the amount of the request
      * @param amount
      */
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
@@ -276,7 +285,7 @@ public class InboundRequest{
      * Get requested datetime
      * @return requestedDtm
      */
-    public DateTime getRequestedDtm() {
+    public Timestamp getRequestedDtm() {
         return requestedDtm;
     }
 
@@ -284,7 +293,7 @@ public class InboundRequest{
      * Set requestedDtm for a request
      * @param requestedDtm
      */
-    public void setRequestedDtm(DateTime requestedDtm) {
+    public void setRequestedDtm(Timestamp requestedDtm) {
         this.requestedDtm = requestedDtm;
     }
 
@@ -324,7 +333,7 @@ public class InboundRequest{
      * Get the inboundStatus Date and time
      * @return inboundStatusDtm
      */
-    public DateTime getInboundStatusDtm() {
+    public Timestamp getInboundStatusDtm() {
         return inboundStatusDtm;
     }
 
@@ -332,7 +341,39 @@ public class InboundRequest{
      * Set the inboundStatus date and time
      * @param inboundStatusDtm
      */
-    public void setInboundStatusDtm(DateTime inboundStatusDtm) {
+    public void setInboundStatusDtm(Timestamp inboundStatusDtm) {
         this.inboundStatusDtm = inboundStatusDtm;
+    }
+
+    /**
+     * Get the payment method for the request
+     * @return
+     */
+    public String getPaymentMethod(){
+        return paymentMethod;
+    }
+
+    /**
+     * Set the payment method of the request
+     * @param paymentMethod
+     */
+    public void setPaymentMethod(String paymentMethod){
+        this.paymentMethod = paymentMethod;
+    }
+
+    /**
+     * Get the payment method type of a request
+     * @return
+     */
+    public String getPaymentMethodType(){
+        return paymentMethodType;
+    }
+
+    /**
+     * Set the paymentmethod type of the request.
+     * @param paymentMethodType
+     */
+    public void setPaymentMethodType(String paymentMethodType){
+        this.paymentMethodType = paymentMethodType;
     }
 }

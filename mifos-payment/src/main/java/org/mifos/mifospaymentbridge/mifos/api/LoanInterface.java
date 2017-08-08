@@ -8,6 +8,7 @@
 
 package org.mifos.mifospaymentbridge.mifos.api;
 
+import org.mifos.mifospaymentbridge.mifos.domain.loan.Loan;
 import org.mifos.mifospaymentbridge.mifos.domain.loan.disbursement.LoanDisbursementRequest;
 import org.mifos.mifospaymentbridge.mifos.domain.loan.disbursement.LoanDisbursementResponse;
 import org.mifos.mifospaymentbridge.mifos.domain.loan.repayment.LoanRepaymentRequest;
@@ -28,15 +29,15 @@ public interface LoanInterface {
     /**
      * API to fetch a loan account using a loan account identifier
      *
-     * @param loanId loan Identifier
+     * @param accountNo loan account number
      * @param isPretty Flag whether to format JSON
      * @param tenantIdentifier Mifos Tenant Identifier
      * @return
      */
-    @GET("loans/{loanId}")
-    Call<LoanDisbursementResponse> disburse(@Path("loanId") Long loanId,
-                                            @Query("pretty") boolean isPretty,
-                                            @Query("tenantIdentifier") String tenantIdentifier);
+    @GET("loans")
+    Call<Loan> getLoanAccount(@Query("accountNo") String accountNo,
+                        @Query("pretty") boolean isPretty,
+                        @Query("tenantIdentifier") String tenantIdentifier);
 
 
     /**

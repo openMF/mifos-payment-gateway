@@ -1,5 +1,7 @@
 package org.mifos.mifospaymentbridge.integration.ProviderApiService;
 
+import org.mifos.mifospaymentbridge.mifos.domain.loan.Loan;
+import org.mifos.mifospaymentbridge.model.InboundCallbackLog;
 import org.mifos.mifospaymentbridge.model.OutboundRequest;
 import org.mifos.mifospaymentbridge.model.Status;
 import org.slf4j.Logger;
@@ -43,6 +45,47 @@ public class PaymentService {
 
         return mmpStatus;
 
+    }
+
+    public InboundCallbackLog sendLoanAccount(String mmpApiUrl, Loan loanAccount, Long requestId){
+        PaymentInterface paymentInterface = createPaymentInterface(mmpApiUrl).create(PaymentInterface.class);
+        Call<InboundCallbackLog> call = paymentInterface.sendLoanAccount(loanAccount, loanAccount.getId(), requestId);
+
+        Response<InboundCallbackLog> mmpResponse = null;
+        InboundCallbackLog inboundCallback = null;
+
+        try{
+            mmpResponse = call.execute();
+
+        }catch(IOException ex){
+
+            logger.error(ex.getMessage(), ex);
+        }
+
+        if(mmpResponse.isSuccessful()) inboundCallback = mmpResponse.body();
+
+
+        return inboundCallback;
+    }
+
+    public Status sendInboundTransactionStatus(String mmpApiUrl, Status callbackStatus){
+        PaymentInterface paymentInterface = createPaymentInterface(mmpApiUrl).create(PaymentInterface.class);
+        Call<Status> call = paymentInterface.sendInboundTransactionStatus(callbackStatus);
+
+        Response<Status> mmpResponse = null;
+        Status inboundStatus = null;
+
+        try{
+            mmpResponse = call.execute();
+
+        }catch(IOException ex){
+
+            logger.error(ex.getMessage(), ex);
+        }
+
+        if(mmpResponse.isSuccessful()) inboundStatus = mmpResponse.body();
+
+        return inboundStatus;
     }
 
 

@@ -15,6 +15,7 @@ import org.mifos.mifospaymentbridge.mifos.api.ClientInterface;
 import org.mifos.mifospaymentbridge.mifos.api.LoanInterface;
 import org.mifos.mifospaymentbridge.mifos.api.SavingsAccountInterface;
 import org.mifos.mifospaymentbridge.mifos.domain.client.Client;
+import org.mifos.mifospaymentbridge.mifos.domain.loan.Loan;
 import org.mifos.mifospaymentbridge.mifos.domain.loan.disbursement.LoanDisbursementRequest;
 import org.mifos.mifospaymentbridge.mifos.domain.loan.disbursement.LoanDisbursementResponse;
 import org.mifos.mifospaymentbridge.mifos.domain.loan.repayment.LoanRepaymentRequest;
@@ -115,7 +116,7 @@ public class MifosService {
     }
 
 
-    public SavingsAccountDepositResponse depositToSavingsAccount(Long accountsId, SavingsAccountDepositRequest depositRequest, boolean isPretty, String tenantIdentifier) throws IOException {
+    public SavingsAccountDepositResponse depositToSavingsAccount(String accountsId, SavingsAccountDepositRequest depositRequest, boolean isPretty, String tenantIdentifier) throws IOException {
         SavingsAccountDepositResponse depositResponse = null;
         Call<SavingsAccountDepositResponse> call = savingsAccountInterface.deposit(accountsId, depositRequest, isPretty, tenantIdentifier);
         Response<SavingsAccountDepositResponse> response = call.execute();
@@ -310,5 +311,34 @@ public class MifosService {
         }
 
         return undoDisbursalResponse;
+    }
+
+    public Loan getLoanAccount(String loanAccNo, boolean isPretty, String tenantIdentifier) throws IOException{
+        Loan loanAccount = null;
+        Call<Loan> call = loanInterface.getLoanAccount(loanAccNo, isPretty, tenantIdentifier);
+        Response<Loan> response = call.execute();
+
+        boolean isSuccessful = response.isSuccessful();
+        int code = response.code();
+
+        if (isSuccessful) {
+            loanAccount = response.body();
+            if (loanAccount != null) {
+                logger.info("- getLoanAccount({}, {}, {}) :Response [isSuccessful: {}, code: {}, accountTransaction: {}]", loanAccNo, isPretty, tenantIdentifier, isSuccessful, code, loanAccount);
+            } else {
+                ResponseBody errorResponse = response.errorBody();
+                if (errorResponse != null) {
+                    logger.info("- getLoanAccount({}, {}, {}) :Response [isSuccessful: {}, code: {}, error: {}]", loanAccNo, isPretty, tenantIdentifier, isSuccessful, code, errorResponse.string());
+                }
+            }
+        }else {
+            ResponseBody errorResponse = response.errorBody();
+            if (errorResponse != null) {
+                logger.info("- getLoanAccount({}, {}, {}) :Response [isSuccessful: {}, code: {}, error: {}]", loanAccNo, isPretty, tenantIdentifier, isSuccessful, code, errorResponse.string());
+            }
+        }
+
+        return loanAccount;
+
     }
 }

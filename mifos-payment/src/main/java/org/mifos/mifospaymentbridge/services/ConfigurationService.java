@@ -51,6 +51,10 @@ public class ConfigurationService {
         configurationRepository.delete(id);
     }
 
+    public Configuration findConfigurationByConfigNameAndReferenceId(String confName, Long refId){
+        return configurationRepository.findConfigurationByConfigNameAndReferenceId(confName, refId);
+    }
+
     public List<Configuration> findByConfigNameIgnoreCase(String configName){
         return configurationRepository.findByConfigNameIgnoreCase(configName);
     }

@@ -32,7 +32,7 @@ public interface SavingsAccountInterface {
      * @return
      */
     @POST("savingsaccounts/{accountsId}/transactions?command=deposit")
-    Call<SavingsAccountDepositResponse> deposit(@Path("accountsId") Long accountsId,
+    Call<SavingsAccountDepositResponse> deposit(@Path("accountsId") String accountsId,
                                                 @Body SavingsAccountDepositRequest depositRequest,
                                                 @Query("pretty") boolean isPretty,
                                                 @Query("tenantIdentifier") String tenantIdentifier);
