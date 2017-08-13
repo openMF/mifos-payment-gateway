@@ -1,3 +1,11 @@
+/**
+ * MifosProperties.java
+ * ========================================
+ * This class holds all configuration for fineract
+ * backend api.
+ * @author vladimirfomene
+ */
+
 package org.mifos.mifospaymentbridge.mifos;
 
 

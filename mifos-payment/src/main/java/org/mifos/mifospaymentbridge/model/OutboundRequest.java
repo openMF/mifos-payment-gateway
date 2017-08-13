@@ -11,6 +11,7 @@ package org.mifos.mifospaymentbridge.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import org.mifos.mifospaymentbridge.Util.TransactionType;
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -19,6 +20,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name="outbound_request")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Data
 public class OutboundRequest{
 
     /**
@@ -27,85 +29,65 @@ public class OutboundRequest{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="outbound_request_id")
-    @JsonProperty("outbound_request_id")
     private Long id;
 
     @Column(name="transaction_type")
-    @JsonProperty("transaction_type")
     @Enumerated(EnumType.STRING)
     private TransactionType transactType;
 
     @Column(name="payment_method")
-    @JsonProperty("payment_method")
     private String paymentMethod;
 
     @Column(name="payment_method_type")
-    @JsonProperty("payment_method_type")
     private String paymentMethodType;
 
     @Column(name="mmp_id")
-    @JsonProperty("mmp_id")
     private Long mmpId;
 
     @Column(name="mfi_id")
-    @JsonProperty("mfi_id")
     private Long mfiId;
 
     @Column(name="source_reference")
-    @JsonProperty("source_reference")
     private String sourceRef;
 
     @Column(name="destination_reference")
-    @JsonProperty("destination_reference")
     private String destinationRef;
 
     @Column(name="fineract_account_number")
-    @JsonProperty("fineract_account_number")
     private String fineractAccNo;
 
     @Column(name="fineract_client_id")
-    @JsonProperty("fineract_client_id")
     private Long fineractClientId;
 
     @Column(name="amount")
-    @JsonProperty("amount")
     private double amount;
 
     @Column(name="transaction_reason")
-    @JsonProperty("transaction_reason")
     private String transactionReason;
 
 
     @Column(name="external_system_id")
-    @JsonProperty("external_system_id")
     private String externalSystId;
 
     @Column(name="comments")
-    @JsonProperty("comments")
     private String comments;
 
     @Column(name="request_dtm")
-    @JsonProperty("request_dtm")
     private Timestamp requestedDtm;
 
     @Column(name="request_ip_address")
-    @JsonProperty("request_ip_address")
     private String requestIpAddress;
 
     @Column(name="outbound_status_id")
-    @JsonProperty("outbound_status_id")
     private Integer outboundStatusId;
 
     @Column(name="outbound_status_dtm")
-    @JsonProperty("outbound_status_dtm")
     private Timestamp outboundStatusDtm;
 
     @Column(name="reverse_status_id")
-    @JsonProperty("reverse_status_id")
     private Integer reverseStatusId;
 
     @Column(name="reverse_status_id_dtm")
-    @JsonProperty("reverse_status_id_dtm")
     private Timestamp reverseStatusIdDtm;
 
 

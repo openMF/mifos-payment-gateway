@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SavingsAccountDepositRequest {
+public class AccountDepositRequest {
 
     @JsonProperty("locale")
     private String locale;

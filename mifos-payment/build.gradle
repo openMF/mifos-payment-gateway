@@ -57,7 +57,7 @@ dependencies {
 
 	compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 
-	//These dependencies are for jms messaging
+	//Adding support for amqp support using activemq and jms
 	compile("org.springframework.boot:spring-boot-starter-activemq")
 	compile("org.apache.activemq:activemq-broker")
 

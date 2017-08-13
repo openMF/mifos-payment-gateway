@@ -58,7 +58,7 @@ public class InboundRequestService {
         return inboundRequestRepository.findByDestinationRefIgnoreCase(ref);
     }
 
-    public List<InboundRequest> findByFineractAccNoIgnoreCase(String accNumber){
-        return inboundRequestRepository.findByFineractAccNoIgnoreCase(accNumber);
+    public InboundRequest findInboundRequestByFineractAccNo(String accNumber){
+        return inboundRequestRepository.findInboundRequestByFineractAccNo(accNumber);
     }
 }

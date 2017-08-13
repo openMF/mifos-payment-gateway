@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.io.IOException;
 
@@ -22,7 +23,9 @@ public class PaymentService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private Retrofit createPaymentInterface(String mmpApiUrl){
-        return new Retrofit.Builder().baseUrl(mmpApiUrl).build();
+        return new Retrofit.Builder().baseUrl(mmpApiUrl)
+                .addConverterFactory(JacksonConverterFactory
+                        .create()).build();
     }
 
     public Status sendPayment(String mmpApiUrl, OutboundRequest request){
@@ -70,6 +73,7 @@ public class PaymentService {
 
     public Status sendInboundTransactionStatus(String mmpApiUrl, Status callbackStatus){
         PaymentInterface paymentInterface = createPaymentInterface(mmpApiUrl).create(PaymentInterface.class);
+        //System.out.println(callbackStatus.toString());
         Call<Status> call = paymentInterface.sendInboundTransactionStatus(callbackStatus);
 
         Response<Status> mmpResponse = null;

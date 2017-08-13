@@ -18,5 +18,5 @@ public interface ConfigurationRepository extends CrudRepository<Configuration, L
 
     Configuration findConfigurationByConfigNameAndReferenceId(String confName, Long refId);
 
-    Configuration findByReferenceIdAndRefType(Long refId, String refType);
+    Configuration findConfigurationByReferenceIdAndRefType(Long refId, String refType);
 }

@@ -21,5 +21,5 @@ public interface InboundRequestRepository extends CrudRepository<InboundRequest,
 
     List<InboundRequest> findByDestinationRefIgnoreCase(String ref);
 
-    List<InboundRequest> findByFineractAccNoIgnoreCase(String accNumber);
+    InboundRequest findInboundRequestByFineractAccNo(String accNumber);
 }

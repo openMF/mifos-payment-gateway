@@ -13,17 +13,18 @@ import lombok.Data;
 public class Changes {
 
     @JsonProperty("accountNumber")
-    private String accountNumber;
+    public String accountNumber;
 
     @JsonProperty("checkNumber")
-    private String checkNumber;
+    public String checkNumber;
 
     @JsonProperty("routingCode")
-    private String routingCode;
+    public String routingCode;
 
     @JsonProperty("receiptNumber")
-    private String receiptNumber;
+    public String receiptNumber;
 
     @JsonProperty("bankNumber")
-    private String bankNumber;
+    public String bankNumber;
+
 }

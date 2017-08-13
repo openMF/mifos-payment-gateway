@@ -16,5 +16,4 @@ public class GatewayConstants {
 
     public static final int PAYMENT_STATUS = 3;
 
-    public static final int SYSTEM_ERROR_CODE = 500;
 }

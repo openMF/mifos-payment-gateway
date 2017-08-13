@@ -11,11 +11,15 @@ package org.mifos.mifospaymentbridge.services;
 
 import org.mifos.mifospaymentbridge.model.Microfinance;
 import org.mifos.mifospaymentbridge.repository.MicrofinanceRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MicrofinanceService {
 
+    @Autowired
     private MicrofinanceRepository microfinanceRepository;
 
     public MicrofinanceService(){
@@ -45,7 +49,7 @@ public class MicrofinanceService {
         return microfinanceRepository.save(users);
     }
 
-    public List<Microfinance> findByNameIgnoreCase(String mfiName){
-        return microfinanceRepository.findByNameIgnoreCase(mfiName);
+    public Microfinance findMicrofinanceByName(String mfiName){
+        return microfinanceRepository.findMicrofinanceByName(mfiName);
     }
 }

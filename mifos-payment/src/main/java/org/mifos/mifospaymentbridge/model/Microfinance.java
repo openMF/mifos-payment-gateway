@@ -8,6 +8,7 @@
 
 package org.mifos.mifospaymentbridge.model;
 
+import lombok.Data;
 import org.joda.time.DateTime;
 import javax.persistence.Column;
 import javax.persistence.Table;
@@ -15,7 +16,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 
+
+@Data
 @Entity
 @Table(name="mfi")
 public class Microfinance{
@@ -35,7 +39,7 @@ public class Microfinance{
     private String description;
 
     @Column(name="last_modified_dtm")
-    private DateTime lastModified;
+    private Timestamp lastModified;
 
     @Column(name="last_modified_by_id")
     private Long lastModifiedById;
@@ -92,7 +96,7 @@ public class Microfinance{
      * Gets the last modified datetime of a microfinance
      * @return lastModified
      */
-    public DateTime getLastModified() {
+    public Timestamp getLastModified() {
         return lastModified;
     }
 
@@ -100,7 +104,7 @@ public class Microfinance{
      * Sets the last modified datetime of a microfinance
      * @param lastModified
      */
-    public void setLastModified(DateTime lastModified) {
+    public void setLastModified(Timestamp lastModified) {
         this.lastModified = lastModified;
     }
 

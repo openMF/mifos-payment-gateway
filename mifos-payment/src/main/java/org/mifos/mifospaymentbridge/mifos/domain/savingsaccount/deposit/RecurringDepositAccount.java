@@ -1,44 +1,16 @@
 package org.mifos.mifospaymentbridge.mifos.domain.savingsaccount.deposit;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "id",
-        "accountNo",
-        "externalId",
-        "clientId",
-        "clientName",
-        "savingsProductId",
-        "savingsProductName",
-        "fieldOfficerId",
-        "status",
-        "timeline",
-        "currency",
-        "interestCompoundingPeriodType",
-        "interestPostingPeriodType",
-        "interestCalculationType",
-        "interestCalculationDaysInYearType",
-        "interestFreePeriodApplicable",
-        "preClosurePenalApplicable",
-        "minDepositTerm",
-        "maxDepositTerm",
-        "minDepositTermType",
-        "maxDepositTermType",
-        "depositAmount",
-        "maturityAmount",
-        "maturityDate",
-        "depositPeriod",
-        "depositPeriodFrequency",
-        "summary",
-        "accountChart"
-})
 @Data
-public class FixedDepositAccount {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class RecurringDepositAccount {
 
     @JsonProperty("id")
     public Integer id;
@@ -70,8 +42,6 @@ public class FixedDepositAccount {
     public InterestCalculationType interestCalculationType;
     @JsonProperty("interestCalculationDaysInYearType")
     public InterestCalculationDaysInYearType interestCalculationDaysInYearType;
-    @JsonProperty("interestFreePeriodApplicable")
-    public Boolean interestFreePeriodApplicable;
     @JsonProperty("preClosurePenalApplicable")
     public Boolean preClosurePenalApplicable;
     @JsonProperty("minDepositTerm")
@@ -82,12 +52,14 @@ public class FixedDepositAccount {
     public MinDepositTermType minDepositTermType;
     @JsonProperty("maxDepositTermType")
     public MaxDepositTermType maxDepositTermType;
-    @JsonProperty("depositAmount")
-    public Integer depositAmount;
-    @JsonProperty("maturityAmount")
-    public Double maturityAmount;
-    @JsonProperty("maturityDate")
-    public List<Integer> maturityDate = null;
+    @JsonProperty("recurringDepositAmount")
+    public Integer recurringDepositAmount;
+    @JsonProperty("recurringDepositFrequency")
+    public Integer recurringDepositFrequency;
+    @JsonProperty("expectedFirstDepositOnDate")
+    public List<Integer> expectedFirstDepositOnDate = null;
+    @JsonProperty("recurringDepositFrequencyType")
+    public RecurringDepositFrequencyType recurringDepositFrequencyType;
     @JsonProperty("depositPeriod")
     public Integer depositPeriod;
     @JsonProperty("depositPeriodFrequency")

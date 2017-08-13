@@ -22,9 +22,6 @@ public class StatusService {
     @Autowired
     private StatusRepository statusRepository;
 
-    public StatusService(){
-
-    }
 
     public Status findOne(Integer id){
         return statusRepository.findOne(id);

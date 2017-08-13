@@ -9,6 +9,7 @@
 package org.mifos.mifospaymentbridge.mifos.api;
 
 import org.mifos.mifospaymentbridge.mifos.domain.loan.Loan;
+import org.mifos.mifospaymentbridge.mifos.domain.loan.LoanAccountSearchResult;
 import org.mifos.mifospaymentbridge.mifos.domain.loan.disbursement.LoanDisbursementRequest;
 import org.mifos.mifospaymentbridge.mifos.domain.loan.disbursement.LoanDisbursementResponse;
 import org.mifos.mifospaymentbridge.mifos.domain.loan.repayment.LoanRepaymentRequest;
@@ -17,10 +18,7 @@ import org.mifos.mifospaymentbridge.mifos.domain.loan.undodisbursal.UndoLoanDisb
 import org.mifos.mifospaymentbridge.mifos.domain.loan.undodisbursal.UndoLoanDisbursementResponse;
 import org.mifos.mifospaymentbridge.mifos.domain.savingsaccount.transaction.SavingsAccountTransaction;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+import retrofit2.http.*;
 
 
 public interface LoanInterface {
@@ -35,9 +33,10 @@ public interface LoanInterface {
      * @return
      */
     @GET("loans")
-    Call<Loan> getLoanAccount(@Query("accountNo") String accountNo,
-                        @Query("pretty") boolean isPretty,
-                        @Query("tenantIdentifier") String tenantIdentifier);
+    Call<LoanAccountSearchResult> getLoanAccount(@Query("accountNo") String accountNo,
+                                                 @Query("pretty") boolean isPretty,
+                                                 @Query("tenantIdentifier") String tenantIdentifier);
+
 
 
     /**
@@ -58,14 +57,12 @@ public interface LoanInterface {
 
     /**
      * API to submit a loan repayment to mifos
-     *
-     * @param loanRepaymentRequest request body
      * @param loanId loan Identifier
      * @param isPretty Flag whether to format JSON
      * @param tenantIdentifier Mifos Tenant Identifier
      * @return
      */
-    @GET("loans/{loanId}/transactions?command=repayment")
+    @POST("loans/{loanId}/transactions?command=repayment")
     Call<LoanRepaymentResponse> repay(@Path("loanId") Long loanId,
                                          @Body LoanRepaymentRequest loanRepaymentRequest,
                                          @Query("pretty") boolean isPretty,

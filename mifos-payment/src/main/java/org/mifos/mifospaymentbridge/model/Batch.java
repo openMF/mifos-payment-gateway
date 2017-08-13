@@ -8,13 +8,14 @@
 
 package org.mifos.mifospaymentbridge.model;
 
-import org.joda.time.DateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "batch")
@@ -49,19 +50,19 @@ public class Batch{
     private String filePath;
 
     @Column(name="file_dtm")
-    private DateTime fileDate;
+    private Timestamp fileDate;
 
     @Column(name="uploaded_by_id")
     private Long uploadedById;
 
     @Column(name="uploaded_dtm")
-    private DateTime uploadedDate;
+    private Timestamp uploadedDate;
 
     @Column(name="last_updated_id")
     private Long lastUpdatedById;
 
     @Column(name="last_updated_dtm")
-    private DateTime lastUpdatedDate;
+    private Timestamp lastUpdatedDate;
 
     @Column(name="status_id")
     private Integer statusId;
@@ -167,7 +168,7 @@ public class Batch{
      * Gets file date time month
      * @return fileDate
      */
-    public DateTime getFileDate() {
+    public Timestamp getFileDate() {
         return fileDate;
     }
 
@@ -175,7 +176,7 @@ public class Batch{
      * Sets file date time month
      * @param fileDate
      */
-    public void setFileDate(DateTime fileDate) {
+    public void setFileDate(Timestamp fileDate) {
         this.fileDate = fileDate;
     }
 
@@ -199,7 +200,7 @@ public class Batch{
      * Get date when file was uploaded.
      * @return uploadedDate;
      */
-    public DateTime getUploadedDate() {
+    public Timestamp getUploadedDate() {
         return uploadedDate;
     }
 
@@ -207,7 +208,7 @@ public class Batch{
      * Set date when file was uploaded.
      * @param uploadedDate
      */
-    public void setUploadedDate(DateTime uploadedDate) {
+    public void setUploadedDate(Timestamp uploadedDate) {
         this.uploadedDate = uploadedDate;
     }
 
@@ -231,7 +232,7 @@ public class Batch{
      * Gets last updated date
      * @return lastUpdatedDate
      */
-    public DateTime getLastUpdatedDate() {
+    public Timestamp getLastUpdatedDate() {
         return lastUpdatedDate;
     }
 
@@ -239,7 +240,7 @@ public class Batch{
      * Set last updated date
      * @param lastUpdatedDate
      */
-    public void setLastUpdatedDate(DateTime lastUpdatedDate) {
+    public void setLastUpdatedDate(Timestamp lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 

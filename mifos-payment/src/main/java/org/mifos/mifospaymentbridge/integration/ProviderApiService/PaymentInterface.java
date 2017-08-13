@@ -16,7 +16,7 @@ import retrofit2.http.Query;
 
 public interface PaymentInterface {
 
-    @POST("outbound/payments/status")
+    @POST("outbound/payments")
     Call<Status> makePayment(@Body OutboundRequest request);
 
     @POST("inbound/loans/{loanId}")

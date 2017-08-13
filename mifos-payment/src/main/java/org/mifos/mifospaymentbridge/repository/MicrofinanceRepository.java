@@ -17,5 +17,5 @@ public interface MicrofinanceRepository extends CrudRepository<Microfinance, Lon
 
     List<Microfinance> save(List<Microfinance> users);
 
-    List<Microfinance> findByNameIgnoreCase(String mfiName);
+    Microfinance findMicrofinanceByName(String mfiName);
 }

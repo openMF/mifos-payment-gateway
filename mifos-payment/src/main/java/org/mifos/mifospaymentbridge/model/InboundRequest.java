@@ -9,36 +9,33 @@
 
 package org.mifos.mifospaymentbridge.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.joda.time.DateTime;
-import javax.persistence.Column;
-import javax.persistence.Table;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 
 @Entity
 @Table(name="inbound_request")
-public class InboundRequest implements Serializable{
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Data
+public class InboundRequest{
 
     //Creation of TransactionType type
     public enum TransactionType{
-        SAVINGS, LOAN_REPAYMENT
+        VOLUNTARY_SAVINGS, LOAN_REPAYMENT, RECURRING_DEPOSIT
     }
 
     /**
      * table Fields of the InboundRequest table
      */
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="inbound_request")
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="inbound_request_id")
     private Long id;
 
     @Column(name="transaction_type")
+    @Enumerated(EnumType.STRING)
     private TransactionType transactType;
 
     @Column(name="mmp_id")
@@ -74,7 +71,7 @@ public class InboundRequest implements Serializable{
     @Column(name="requested_dtm")
     private Timestamp requestedDtm;
 
-    @Column(name="request_id_address")
+    @Column(name="request_ip_address")
     private String requestIpAddress;
 
     @Column(name="inbound_status_id")

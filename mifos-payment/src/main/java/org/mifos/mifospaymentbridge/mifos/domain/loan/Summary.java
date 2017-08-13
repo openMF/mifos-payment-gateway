@@ -1,5 +1,6 @@
 package org.mifos.mifospaymentbridge.mifos.domain.loan;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -42,6 +43,7 @@ import lombok.Data;
         "totalOverdue"
 })
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Summary {
 
     @JsonProperty("currency")

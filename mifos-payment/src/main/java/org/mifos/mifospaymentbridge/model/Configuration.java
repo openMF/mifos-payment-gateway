@@ -9,12 +9,9 @@
 package org.mifos.mifospaymentbridge.model;
 
 import org.joda.time.DateTime;
-import javax.persistence.Column;
-import javax.persistence.Table;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name="configuration")
@@ -38,6 +35,7 @@ public class Configuration{
     private Long referenceId;
 
     @Column(name="reference_type")
+    @Enumerated(EnumType.STRING)
     private ReferenceType refType;
 
     @Column(name="config_name")
@@ -50,7 +48,7 @@ public class Configuration{
     private Integer configCategory;
 
     @Column(name="last_modified_dtm")
-    private DateTime lastModifiedDtm;
+    private Timestamp lastModifiedDtm;
 
     @Column(name="last_modified_by_id")
     private Long lastModifiedById;
@@ -155,7 +153,7 @@ public class Configuration{
      * Gets the last Modified date
      * @return lastModifiedDtm
      */
-    public DateTime getLastModifiedDtm() {
+    public Timestamp getLastModifiedDtm() {
         return lastModifiedDtm;
     }
 
@@ -163,7 +161,7 @@ public class Configuration{
      * Set the last modified date
      * @param lastModifiedDtm
      */
-    public void setLastModifiedDtm(DateTime lastModifiedDtm) {
+    public void setLastModifiedDtm(Timestamp lastModifiedDtm) {
         this.lastModifiedDtm = lastModifiedDtm;
     }
 

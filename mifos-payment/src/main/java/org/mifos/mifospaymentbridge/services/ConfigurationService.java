@@ -59,7 +59,7 @@ public class ConfigurationService {
         return configurationRepository.findByConfigNameIgnoreCase(configName);
     }
 
-    public Configuration findByReferenceIdAndRefType(Long id, String type){
-        return configurationRepository.findByReferenceIdAndRefType(id, type);
+    public Configuration findConfigurationByReferenceIdAndRefType(Long id, String type){
+        return configurationRepository.findConfigurationByReferenceIdAndRefType(id, type);
     }
 }
