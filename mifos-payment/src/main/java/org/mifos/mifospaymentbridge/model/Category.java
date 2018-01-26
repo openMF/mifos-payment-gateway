@@ -8,13 +8,14 @@
 
 package org.mifos.mifospaymentbridge.model;
 
-import org.joda.time.DateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "category")
@@ -32,7 +33,7 @@ public class Category {
     private String categoryName;
 
     @Column(name="last_modified_dtm")
-    private DateTime lastModifiedDtm;
+    private Timestamp lastModifiedDtm;
 
     @Column(name="last_modified_by_id")
     private Integer lastModifiedById;
@@ -73,7 +74,7 @@ public class Category {
      * Get the last modified date
      * @return lastModifiedDtm
      */
-    public DateTime getLastModifiedDtm() {
+    public Timestamp getLastModifiedDtm() {
         return lastModifiedDtm;
     }
 
@@ -81,7 +82,7 @@ public class Category {
      * Sets the last modified date
      * @param lastModifiedDtm
      */
-    public void setLastModifiedDtm(DateTime lastModifiedDtm) {
+    public void setLastModifiedDtm(Timestamp lastModifiedDtm) {
         this.lastModifiedDtm = lastModifiedDtm;
     }
 

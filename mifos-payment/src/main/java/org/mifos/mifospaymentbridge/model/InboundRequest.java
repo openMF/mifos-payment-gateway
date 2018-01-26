@@ -9,32 +9,33 @@
 
 package org.mifos.mifospaymentbridge.model;
 
-import org.joda.time.DateTime;
-import javax.persistence.Column;
-import javax.persistence.Table;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import javax.persistence.*;
+import java.sql.Timestamp;
+
 
 @Entity
 @Table(name="inbound_request")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Data
 public class InboundRequest{
 
     //Creation of TransactionType type
     public enum TransactionType{
-        SAVINGS, LOAN_REPAYMENT
+        VOLUNTARY_SAVINGS, LOAN_REPAYMENT, RECURRING_DEPOSIT
     }
 
     /**
      * table Fields of the InboundRequest table
      */
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="inbound_request")
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="inbound_request_id")
     private Long id;
 
     @Column(name="transaction_type")
+    @Enumerated(EnumType.STRING)
     private TransactionType transactType;
 
     @Column(name="mmp_id")
@@ -56,7 +57,7 @@ public class InboundRequest{
     private Long fineractClientId;
 
     @Column(name="amount")
-    private double amount;
+    private Double amount;
 
     @Column(name="transaction_reason")
     private String transactionReason;
@@ -68,16 +69,22 @@ public class InboundRequest{
     private String comments;
 
     @Column(name="requested_dtm")
-    private DateTime requestedDtm;
+    private Timestamp requestedDtm;
 
-    @Column(name="request_id_address")
+    @Column(name="request_ip_address")
     private String requestIpAddress;
 
     @Column(name="inbound_status_id")
     private Integer inboundStatusId;
 
     @Column(name="inbound_status_dtm")
-    private DateTime inboundStatusDtm;
+    private Timestamp inboundStatusDtm;
+
+    @Column(name="payment_method")
+    private String paymentMethod;
+
+    @Column(name="payment_method_type")
+    private String paymentMethodType;
 
     /**
      * Gets the id of the request
@@ -211,7 +218,7 @@ public class InboundRequest{
      * Get the amount of the request
      * @return amount
      */
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
@@ -219,7 +226,7 @@ public class InboundRequest{
      * Sets the amount of the request
      * @param amount
      */
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
@@ -275,7 +282,7 @@ public class InboundRequest{
      * Get requested datetime
      * @return requestedDtm
      */
-    public DateTime getRequestedDtm() {
+    public Timestamp getRequestedDtm() {
         return requestedDtm;
     }
 
@@ -283,7 +290,7 @@ public class InboundRequest{
      * Set requestedDtm for a request
      * @param requestedDtm
      */
-    public void setRequestedDtm(DateTime requestedDtm) {
+    public void setRequestedDtm(Timestamp requestedDtm) {
         this.requestedDtm = requestedDtm;
     }
 
@@ -323,7 +330,7 @@ public class InboundRequest{
      * Get the inboundStatus Date and time
      * @return inboundStatusDtm
      */
-    public DateTime getInboundStatusDtm() {
+    public Timestamp getInboundStatusDtm() {
         return inboundStatusDtm;
     }
 
@@ -331,7 +338,39 @@ public class InboundRequest{
      * Set the inboundStatus date and time
      * @param inboundStatusDtm
      */
-    public void setInboundStatusDtm(DateTime inboundStatusDtm) {
+    public void setInboundStatusDtm(Timestamp inboundStatusDtm) {
         this.inboundStatusDtm = inboundStatusDtm;
+    }
+
+    /**
+     * Get the payment method for the request
+     * @return
+     */
+    public String getPaymentMethod(){
+        return paymentMethod;
+    }
+
+    /**
+     * Set the payment method of the request
+     * @param paymentMethod
+     */
+    public void setPaymentMethod(String paymentMethod){
+        this.paymentMethod = paymentMethod;
+    }
+
+    /**
+     * Get the payment method type of a request
+     * @return
+     */
+    public String getPaymentMethodType(){
+        return paymentMethodType;
+    }
+
+    /**
+     * Set the paymentmethod type of the request.
+     * @param paymentMethodType
+     */
+    public void setPaymentMethodType(String paymentMethodType){
+        this.paymentMethodType = paymentMethodType;
     }
 }

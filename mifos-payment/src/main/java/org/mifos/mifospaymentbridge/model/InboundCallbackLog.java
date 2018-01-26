@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name="inbound_callback_log")
@@ -41,7 +42,7 @@ public class InboundCallbackLog{
     private String callbackMessage;
 
     @Column(name="callback_dtm")
-    private DateTime callbackDtm;
+    private Timestamp callbackDtm;
 
     /**
      * Gets the id of the callback log
@@ -127,7 +128,7 @@ public class InboundCallbackLog{
      * Gets the callback date of this log
      * @return callbackDtm
      */
-    public DateTime getCallbackDtm() {
+    public Timestamp getCallbackDtm() {
         return callbackDtm;
     }
 
@@ -135,7 +136,7 @@ public class InboundCallbackLog{
      * Sets the callback date of this log
      * @param callbackDtm
      */
-    public void setCallbackDtm(DateTime callbackDtm) {
+    public void setCallbackDtm(Timestamp callbackDtm) {
         this.callbackDtm = callbackDtm;
     }
 }

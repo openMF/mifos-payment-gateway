@@ -8,6 +8,9 @@
 
 package org.mifos.mifospaymentbridge.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Entity;
@@ -17,6 +20,8 @@ import javax.persistence.Id;
 
 @Entity
 @Table(name="status")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Data
 public class Status{
 
     /**

@@ -12,23 +12,22 @@ package org.mifos.mifospaymentbridge.services;
 import org.mifos.mifospaymentbridge.model.Status;
 import org.mifos.mifospaymentbridge.repository.StatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class StatusService {
 
     @Autowired
     private StatusRepository statusRepository;
 
-    public StatusService(){
-
-    }
 
     public Status findOne(Integer id){
         return statusRepository.findOne(id);
     }
 
-    public List<Status> findAll(){
+    public Iterable<Status> findAll(){
         return statusRepository.findAll();
     }
 
@@ -44,8 +43,8 @@ public class StatusService {
         return statusRepository.exists(id);
     }
 
-    public void deleteById(Integer id){
-        statusRepository.deleteById(id);
+    public void delete(Integer id){
+        statusRepository.delete(id);
     }
 
     public List<Status> findByCodeIgnoreCase(String code){

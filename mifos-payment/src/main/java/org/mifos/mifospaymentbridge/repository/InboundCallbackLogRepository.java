@@ -14,17 +14,8 @@ import org.mifos.mifospaymentbridge.model.InboundCallbackLog;
 import java.util.List;
 
 public interface InboundCallbackLogRepository extends CrudRepository<InboundCallbackLog, Long>{
-    InboundCallbackLog findOne(Long id);
-
-    List<InboundCallbackLog> findAll();
-
-    InboundCallbackLog save(InboundCallbackLog log);
 
     List<InboundCallbackLog> save(List<InboundCallbackLog> logs);
-
-    boolean exists(Long id);
-
-    void deleteById(Long id);
 
     List<InboundCallbackLog> findByCallbackUrlIgnoreCase(String url);
 }

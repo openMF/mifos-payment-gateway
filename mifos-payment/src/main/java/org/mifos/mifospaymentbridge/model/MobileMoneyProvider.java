@@ -9,15 +9,18 @@
 package org.mifos.mifospaymentbridge.model;
 
 import org.joda.time.DateTime;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 
 @Entity
-@Table(name = "MMP")
+@Table(name = "mmp")
 public class MobileMoneyProvider{
 
 
@@ -36,7 +39,7 @@ public class MobileMoneyProvider{
     private String currencyCode;
 
     @Column(name="last_modified_dtm")
-    private DateTime lastModified;
+    private Timestamp lastModified;
 
     @Column(name="last_modified_by_id")
     private Long lastModifiedById;
@@ -93,7 +96,7 @@ public class MobileMoneyProvider{
      * Gets the last modified datetime of this mobile money provider
      * @return
      */
-    public DateTime getLastModified() {
+    public Timestamp getLastModified() {
         return lastModified;
     }
 
@@ -101,7 +104,7 @@ public class MobileMoneyProvider{
      * Sets the last modified datetime of this mobile money provider
      * @param lastModified
      */
-    public void setLastModified(DateTime lastModified) {
+    public void setLastModified(Timestamp lastModified) {
         this.lastModified = lastModified;
     }
 
@@ -119,5 +122,16 @@ public class MobileMoneyProvider{
      */
     public void setLastModifiedById(Long lastModifiedById) {
         this.lastModifiedById = lastModifiedById;
+    }
+
+    @Override
+    public String toString() {
+        return "MobileMoneyProvider{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", currencyCode='" + currencyCode + '\'' +
+                ", lastModified=" + lastModified +
+                ", lastModifiedById=" + lastModifiedById +
+                '}';
     }
 }

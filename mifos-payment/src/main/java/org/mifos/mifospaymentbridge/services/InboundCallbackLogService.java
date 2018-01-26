@@ -12,8 +12,11 @@ package org.mifos.mifospaymentbridge.services;
 import org.mifos.mifospaymentbridge.model.InboundCallbackLog;
 import org.mifos.mifospaymentbridge.repository.InboundCallbackLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class InboundCallbackLogService {
 
     @Autowired
@@ -27,7 +30,7 @@ public class InboundCallbackLogService {
         return inboundCallbackLogRepository.findOne(id);
     }
 
-    public List<InboundCallbackLog> findAll(){
+    public Iterable<InboundCallbackLog> findAll(){
         return inboundCallbackLogRepository.findAll();
     }
 
@@ -43,8 +46,8 @@ public class InboundCallbackLogService {
         return inboundCallbackLogRepository.exists(id);
     }
 
-    public void deleteById(Long id){
-        inboundCallbackLogRepository.deleteById(id);
+    public void delete(Long id){
+        inboundCallbackLogRepository.delete(id);
     }
 
     public List<InboundCallbackLog> findByCallbackUrlIgnoreCase(String url){

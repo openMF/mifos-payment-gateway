@@ -26,6 +26,9 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
 
+	//Helps you to build rest service, consume rest and use RestController
+	compile("org.springframework.boot:spring-boot-starter-web")
+
 	// JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
 
@@ -38,11 +41,25 @@ dependencies {
 	//Add jackson library for json to POJO conversions
 	compile("com.fasterxml.jackson.core:jackson-databind")
 
+	compile 'com.fasterxml.jackson.core:jackson-core'
+
 	//Add lombok library for generating getters, setters and toString
 	compile("org.projectlombok:lombok:1.16.18")
 
 	//Add retrofit library to communicate with web services
 	compile 'com.squareup.retrofit2:retrofit:2.3.0'
+
+	//Add jackson converter to retrofit
+	compile 'com.squareup.retrofit2:converter-jackson:2.3.0'
+
+	//Add okhttp to get http error response from retrofit
+	compile 'com.squareup.okhttp3:okhttp:3.8.1'
+
+	compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+
+	//Adding support for amqp support using activemq and jms
+	compile("org.springframework.boot:spring-boot-starter-activemq")
+	compile("org.apache.activemq:activemq-broker")
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
